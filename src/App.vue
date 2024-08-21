@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
-
+import ProgresLinear from "./components/ProgresLinear.vue";
+import City from "@/containers/progressLinear/city.vue";
 const options = ref({
   chart: {
     id: "vuechart-example",
@@ -43,12 +44,11 @@ function updateChart() {
         :series="series"
       ></apexchart> -->
 
-      <div class="w-1/3 bg-gray-600 bg-opacity-40 items-end mx-3 my-10">
-        <div class="text-white mt-5 ml-3 font-bold">Top Sources</div>
-        <div class="text-slate-400 ml-3 mt-1 font-bold text-sm">sources</div>
-      </div>
+      <City></City>
 
-      <div class="w-1/3 bg-gray-600 bg-opacity-40 items-end mx-3 my-10">
+      <div
+        class="w-1/3 bg-gray-600 bg-opacity-40 rounded-lg items-end mx-2 my-10"
+      >
         <div class="text-white mt-5 ml-3 font-bold">Top Sources</div>
         <div class="text-slate-400 ml-3 mt-1 font-bold text-sm">sources</div>
       </div>
