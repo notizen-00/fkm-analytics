@@ -2,18 +2,18 @@
   <div
     class="w-1/3 bg-gray-600 bg-opacity-40 rounded-lg items-end mx-1 my-5 relative"
   >
-    <div class="text-white mt-5 ml-3 font-bold">Top Kota</div>
+    <div class="text-white mt-5 ml-3 font-bold">Lokasi</div>
 
     <div class="container px-2 mt-2 overflow-y-hidden max-h-60">
       <div class="flex justify-between w-full">
-        <div class="text-slate-400 text-sm font-bold py-2">Kota</div>
-        <div class="text-slate-400 text-sm font-bold py-2">Pengunjung</div>
+        <div class="text-slate-400 text-sm font-bold py-2">Keyword</div>
+        <div class="text-slate-400 text-sm font-bold py-2">Volume</div>
       </div>
       <ProgressLinear
-        :data="cityData"
-        labelKey="Kota"
+        :data="fetchData"
+        labelKey="Nama Negara"
         valueKey="Jumlah Pengunjung"
-        :fetchData="fetchCityData"
+        :fetchData="fetchApiData"
       />
     </div>
 
@@ -31,10 +31,15 @@
 import { inject } from "vue";
 import ProgressLinear from "@/components/ProgresLinear.vue";
 import { storeToRefs } from "pinia";
-const store = inject("store");
-const { getData: cityData } = storeToRefs(store.cityStore);
 
-function fetchCityData() {
-  store.cityStore.fetchData();
+// Injecting store
+const store = inject("store");
+
+// Destructuring the reactive reference from store
+const { getData: fetchData } = storeToRefs(store.countryStore);
+
+// Method to fetch data
+function fetchApiData() {
+  store.countryStore.fetchData();
 }
 </script>

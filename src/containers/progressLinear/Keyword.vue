@@ -2,18 +2,18 @@
   <div
     class="w-1/3 bg-gray-600 bg-opacity-40 rounded-lg items-end mx-1 my-5 relative"
   >
-    <div class="text-white mt-5 ml-3 font-bold">Top Kota</div>
+    <div class="text-white mt-5 ml-3 font-bold">Top Keyword</div>
 
     <div class="container px-2 mt-2 overflow-y-hidden max-h-60">
       <div class="flex justify-between w-full">
-        <div class="text-slate-400 text-sm font-bold py-2">Kota</div>
-        <div class="text-slate-400 text-sm font-bold py-2">Pengunjung</div>
+        <div class="text-slate-400 text-sm font-bold py-2">Keyword</div>
+        <div class="text-slate-400 text-sm font-bold py-2">Volume</div>
       </div>
       <ProgressLinear
-        :data="cityData"
-        labelKey="Kota"
-        valueKey="Jumlah Pengunjung"
-        :fetchData="fetchCityData"
+        :data="fetchData"
+        labelKey="Keyword"
+        valueKey="Volume"
+        :fetchData="fetchKeywordData"
       />
     </div>
 
@@ -32,9 +32,9 @@ import { inject } from "vue";
 import ProgressLinear from "@/components/ProgresLinear.vue";
 import { storeToRefs } from "pinia";
 const store = inject("store");
-const { getData: cityData } = storeToRefs(store.cityStore);
+const { getData: fetchData } = storeToRefs(store.keywordStore);
 
-function fetchCityData() {
-  store.cityStore.fetchData();
+function fetchKeywordData() {
+  store.keywordStore.fetchData();
 }
 </script>

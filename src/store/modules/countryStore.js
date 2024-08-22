@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { apiService } from '../../network/apiService';
 import axios from 'axios';
 
-export const useCityStores = defineStore('cityStore', {
+export const useCountryStores = defineStore('countryStore', {
   state: () => ({
     overlay: false,
     data:[],
@@ -15,7 +15,7 @@ export const useCityStores = defineStore('cityStore', {
     },
     async fetchData(){
     
-    const url = `${this.apiUrl}mrtm61907nm6eph/records?limit=25&shuffle=0&offset=0`;
+    const url = `${this.apiUrl}my33lzebdnqu62l/records?limit=25&shuffle=0&offset=0`;
     try {
         const data = await apiService.get(url);
         this.data = data.list;

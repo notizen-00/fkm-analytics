@@ -9,16 +9,23 @@
       <!-- Progress Bar Background -->
       <div
         class="absolute inset-0 bg-gray-600 bg-opacity-90 rounded-sm"
-        :style="{ width: item[valueKey] + '%', height: '100%' }"
+        :style="{
+          width: calculatePercentage(item[valueKey]) + '%',
+          height: '100%',
+        }"
       ></div>
 
       <!-- Text and Indicators -->
       <div class="relative flex items-center justify-between">
         <div class="flex items-center">
-          <div class="bg-gray-700 rounded-full w-2.5 h-2.5"></div>
+          <div :class="iconClass">
+            <i :class="icon"></i>
+          </div>
           <span class="ml-3 text-gray-300">{{ item[labelKey] }}</span>
         </div>
-        <div class="text-gray-300 font-semibold">{{ item[valueKey] }}</div>
+        <div class="text-gray-300 font-semibold">
+          {{ item[valueKey] }}
+        </div>
       </div>
     </div>
   </div>
@@ -26,13 +33,20 @@
 
 <script setup>
 import { onMounted } from "vue";
-import { storeToRefs } from "pinia";
 
 // Props to make the component reusable
 const props = defineProps({
   data: {
     type: Array,
     required: true,
+  },
+  icon: {
+    type: String,
+    required: false,
+  },
+  iconClass: {
+    type: String,
+    required: false,
   },
   labelKey: {
     type: String,
@@ -53,4 +67,10 @@ onMounted(() => {
     props.fetchData();
   }
 });
+
+// Function to calculate percentage
+function calculatePercentage(value) {
+  const total = props.data.reduce((sum, item) => sum + item[props.valueKey], 0);
+  return ((value / total) * 100).toFixed(2);
+}
 </script>

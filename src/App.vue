@@ -1,7 +1,16 @@
 <script setup>
 import { ref } from "vue";
 import ProgresLinear from "./components/ProgresLinear.vue";
-import City from "@/containers/progressLinear/city.vue";
+import City from "@/containers/progressLinear/City.vue";
+import Browser from "@/containers/progressLinear/Browser.vue";
+import Keyword from "@/containers/progressLinear/Keyword.vue";
+import Lokasi from "@/containers/progressLinear/Lokasi.vue";
+
+const countryColors = {
+  US: "#2200AA",
+  CA: "red",
+  UK: "rgba(200, 200, 255, 0.1)",
+};
 const options = ref({
   chart: {
     id: "vuechart-example",
@@ -10,13 +19,6 @@ const options = ref({
     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
   },
 });
-
-const series = ref([
-  {
-    name: "Vue Chart",
-    data: [30, 40, 45, 50, 49, 60, 70, 81],
-  },
-]);
 
 function updateChart() {
   const max = 90;
@@ -45,13 +47,19 @@ function updateChart() {
       ></apexchart> -->
 
       <City></City>
+      <Browser></Browser>
+    </div>
+    <div class="container w-full flex justify-center h-1/2 mx-auto">
+      <!-- <apexchart
+        width="500"
+        title="Data Contoh"
+        type="bar"
+        :options="options"
+        :series="series"
+      ></apexchart> -->
 
-      <div
-        class="w-1/3 bg-gray-600 bg-opacity-40 rounded-lg items-end mx-2 my-10"
-      >
-        <div class="text-white mt-5 ml-3 font-bold">Top Sources</div>
-        <div class="text-slate-400 ml-3 mt-1 font-bold text-sm">sources</div>
-      </div>
+      <Lokasi></Lokasi>
+      <Keyword></Keyword>
     </div>
   </body>
 </template>
